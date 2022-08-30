@@ -41,7 +41,7 @@ namespace API
 
             app.UseRouting();
             
-            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200")); // position is important should be before authorization
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200")); // position is important should be before authorization
 
             app.UseAuthorization();
 
