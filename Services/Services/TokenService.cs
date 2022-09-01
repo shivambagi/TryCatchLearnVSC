@@ -27,7 +27,7 @@ namespace Services.Services
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires =DateTime.Now.AddMinutes(5),
+                Expires =DateTime.Now.AddMinutes(20),
                 SigningCredentials = creds
             };
 

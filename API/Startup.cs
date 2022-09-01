@@ -1,4 +1,7 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Models.Data;
 using Services.Interfaces;
@@ -23,6 +26,18 @@ namespace API
             });
             services.AddControllers();
             services.AddCors();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                        .AddJwtBearer(options => 
+                        {
+                            options.TokenValidationParameters = new TokenValidationParameters
+                            {
+                                ValidateIssuerSigningKey = true,
+                                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["TokenKey"])),
+                                ValidateIssuer = false,
+                                ValidateAudience =false
+                            };
+                        });
 
 
 
@@ -49,6 +64,8 @@ namespace API
             app.UseRouting();
             
             app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200")); // position is important should be before authorization
+
+            app.UseAuthentication(); // this will understand from the services config and [Authorize] attribute
 
             app.UseAuthorization();
 
