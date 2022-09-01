@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Models.Data;
+using Services.Interfaces;
+using Services.Services;
 
 namespace API
 {
@@ -21,6 +23,11 @@ namespace API
             });
             services.AddControllers();
             services.AddCors();
+
+
+
+            services.AddScoped<ITokenService,TokenService>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
