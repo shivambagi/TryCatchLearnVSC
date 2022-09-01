@@ -1,0 +1,5 @@
+dotnet ef database update -p Models -s API
+dotnet ef migrations add InitialCreate -p Models -s API -o Data/Migrations
+dotnet ef migrations remove -p Models -s API -o Data/Migrations
+Go into the project where you want add reference
+dotnet add reference ../Models
