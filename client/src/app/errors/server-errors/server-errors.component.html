@@ -1,0 +1,15 @@
+<h3>Internal server error</h3>
+<ng-container>
+    <h5 class="text-danger">Error: {{error.message}}</h5>
+    <p class="font-weight-bold"></p>
+    <p>what to do next</p>
+    <ol>
+        <li>Open the chrome dev tools</li>
+        <li>Check the network tab</li>
+        <li>check the failing request</li>
+        <li>Check for correct request URL</li>
+        <li>Reproduce the error in postman</li>
+    </ol>
+    <p>Stack trace:</p>
+    <code style="margin-top: 5px;background-color: whitesmoke;">{{error.details}}</code>
+</ng-container>
